@@ -1,7 +1,7 @@
 export default {
-  exportStatic: {
-    dynamicRoot: true,
-  },
+  exportStatic: {},
+  base: '/pingos-player/',
+  publicPath: "/pingos-player/",
   hash: true,
   theme: {
     "@border-radius-base": "0px",

@@ -1,10 +1,7 @@
-import React, { useEffect, useRef } from "react";
-import { Button, Menu } from "antd";
+import React from "react";
 import styles from "./index.less";
 import { Link, NavLink } from "umi";
 import logo from "@/assets/logo.png";
-
-const { SubMenu } = Menu;
 
 export default ({ children }) => {
   return (
@@ -23,14 +20,14 @@ export default ({ children }) => {
 
             <nav className={styles.nav}>
               <NavLink
-                to="/hls"
+                to="/hls/"
                 className={styles["nav-link"]}
                 activeClassName={styles.active}
               >
                 HLS流直播
               </NavLink>
               <NavLink
-                to="/rtmp"
+                to="/hls/test"
                 className={styles["nav-link"]}
                 activeClassName={styles.active}
               >
