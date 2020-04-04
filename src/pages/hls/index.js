@@ -38,7 +38,7 @@ export default () => {
 
   return (
     <div className={styles.container}>
-      <Card title="HLS流直播">
+      <Card title="HLS流直播1">
         <div className={styles.box}>
           <Input
             onChange={e => {
