@@ -33,6 +33,9 @@ jobs:
       - name: 安装 node_modules
         run: npm install
 
+      - name: 构建
+        run: npm run build
+
       - name: 发布
         run: |
           git subtree split --prefix=dist --squash -b gh-pages
