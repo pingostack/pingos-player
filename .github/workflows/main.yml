@@ -21,7 +21,6 @@ jobs:
           chmod 700 ~/.ssh && chmod 600 ~/.ssh/*
           git config --global user.email "990834867@qq.com"
           git config --global user.name "ouzhou"
-          git config --global credential.helper wincred
 
       - name: 切到 master
         uses: actions/checkout@master
@@ -34,5 +33,7 @@ jobs:
       - name: 安装 node_modules
         run: npm install
 
-      - name: 发布 
-        run: npm run deploy
+      - name: 发布
+        run: |
+          git subtree split --prefix=dist --squash -b gh-pages
+          git push origin gh-pages
