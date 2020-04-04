@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set SSH Environment
+      - name: 配置 ssh
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
         run: |
@@ -20,18 +20,18 @@ jobs:
           ssh-keyscan github.com > ~/.ssh/known_hosts
           chmod 700 ~/.ssh && chmod 600 ~/.ssh/*
           git config --global user.email "990834867@qq.com"
-          git config --global user.name "欧舟"
+          git config --global user.name "ouzhou"
 
-      - name: 切到master
+      - name: 切到 master
         uses: actions/checkout@master
 
-      - name: 安装nodejs
+      - name: 安装 nodejs
         uses: actions/setup-node@v1
         with:
           node-version: 10
 
-      - name: 安装node_modules
+      - name: 安装 node_modules
         run: npm install
 
-      - name: 发布
+      - name: 发布 
         run: npm run deploy
