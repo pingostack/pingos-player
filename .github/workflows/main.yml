@@ -38,5 +38,5 @@ jobs:
 
       - name: 发布
         run: |
-          git subtree split --prefix=dist --squash -b gh-pages
-          git push origin gh-pages
+          git subtree split --prefix=dist --squash -b dist
+          git push origin gh-pages:dist
