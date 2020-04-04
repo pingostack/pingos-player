@@ -18,7 +18,8 @@ jobs:
         with:
           node-version: 10
 
-      - name: 构建
-        run: |
-          npm install
-          npm run deploy
+      - name: 安装node_modules
+        run: npm install
+
+      - name: 发布
+        run: npm run deploy
