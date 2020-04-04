@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "start": "umi dev",
+    "build": "umi build"
+  },
+  "dependencies": {
+    "@umijs/preset-react": "^1.4.8",
+    "hls.js": "^0.13.2",
+    "umi": "^3.0.13-beta.1"
+  }
+}

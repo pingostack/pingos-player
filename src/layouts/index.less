@@ -1,0 +1,61 @@
+@header-height: 64px;
+@primary: #2e85ed;
+
+.wide {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.container {
+  .header {
+    height: @header-height;
+    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+      0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+
+    .box {
+      display: flex;
+      justify-content: space-between;
+      .logo {
+        height: @header-height;
+        display: inline-flex;
+        align-items: center;
+
+        .text {
+          font-weight: 500;
+          color: rgba(0, 0, 0, 0.85);
+          font-size: 18px;
+          font-family: Avenir, -apple-system, BlinkMacSystemFont, segoe ui,
+            Roboto, helvetica neue, Arial, noto sans, sans-serif,
+            apple color emoji, segoe ui emoji, segoe ui symbol, noto color emoji,
+            sans-serif;
+          .img {
+            width: 32px;
+            vertical-align: text-bottom;
+            margin-right: 10px;
+          }
+        }
+      }
+
+      .nav {
+        display: flex;
+        padding-top: 20px;
+        .nav-link {
+          background: #fff;
+          border: 1px solid @primary;
+          height: 30px;
+          line-height: 30px;
+          padding: 0 10px;
+          margin-right: 4px;
+          &.active {
+            color: #fff;
+            background-color: @primary;
+          }
+        }
+      }
+    }
+  }
+  .main {
+    min-height: calc(~"100vh - @{header-height}");
+    background: #f0f2f5;
+  }
+}
