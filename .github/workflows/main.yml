@@ -38,9 +38,10 @@ jobs:
 
       - name: 发布
         run: |
-          git checkout --orphan gh-pages
-          git rm -rf .
-          git checkout master dist
-          git commit -m 'auto commit'
-          git push origin gh-pages --force
+          git checkout --orphan gh-temp
+          echo "node_modules\n.umi\n.umi-production" > .gitignore   
+          git add .
+          git commit -am "auto commit"
+          git subtree split --prefix dist -b gh-pages
+          git push -f origin gh-pages:gh-pages
 
