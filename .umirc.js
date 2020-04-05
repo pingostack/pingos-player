@@ -7,4 +7,7 @@ export default {
     "@border-radius-base": "0px",
     "primary-color": "#2e85ed",
   },
+  headScripts: [
+    { src: '/WXInlinePlayer/index.js' },
+  ],
 };
