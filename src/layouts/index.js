@@ -26,13 +26,13 @@ export default ({ children }) => {
               >
                 HLS流直播
               </NavLink>
-              <NavLink
+              {/* <NavLink
                 to="/hls/test"
                 className={styles["nav-link"]}
                 activeClassName={styles.active}
               >
                 RTMP流直播
-              </NavLink>
+              </NavLink> */}
             </nav>
           </div>
         </div>
