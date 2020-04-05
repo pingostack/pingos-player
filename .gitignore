@@ -5,9 +5,6 @@
 /npm-debug.log*
 /yarn-error.log
 
-# production
-/dist
-
 # misc
 .DS_Store
 
