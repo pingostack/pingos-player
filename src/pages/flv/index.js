@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Input, Card, Modal } from "antd";
 import styles from "./index.less";
-
 import WXInlinePlayer from "./components/p";
+import { FullscreenOutlined, FullscreenExitOutlined } from "@ant-design/icons";
+import FullScreen from "react-full-screen";
 
 export default () => {
   const videoRef = useRef();
@@ -11,6 +12,7 @@ export default () => {
   const [width, setWidth] = useState(1080);
   const [height, setHeight] = useState(720);
   const [url, setUrl] = useState("https://live.pingos.io:4443/flv/ice");
+  const [fullScreen, setFullScreen] = useState(false);
 
   useEffect(() => {
     if (WXInlinePlayer.isSupport()) {
@@ -91,7 +93,7 @@ export default () => {
   return (
     <div className={styles.container}>
       <Card title="FLV流直播">
-        <div className={styles.box}>
+        <div className={styles["input-box"]}>
           <Input
             onChange={e => {
               setUrl(e.target.value);
@@ -111,13 +113,43 @@ export default () => {
           )}
         </div>
 
-        <div className={styles["video-box"]}>
-          <canvas
-            width={width}
-            height={height}
-            ref={videoRef}
-            className={styles.video}
-          ></canvas>
+        <div className={styles["player-box"]}>
+          <div className={styles.box}>
+            <FullScreen
+              enabled={fullScreen}
+              onChange={e => {
+                setFullScreen(e);
+              }}
+            >
+              <div className={styles.player}>
+                <canvas
+                  width={width}
+                  height={height}
+                  ref={videoRef}
+                  className={styles.video}
+                ></canvas>
+
+                <div className={styles.control}>
+                  {fullScreen ? (
+                    <FullscreenExitOutlined
+                      onClick={() => {
+                        setFullScreen(false);
+                      }}
+                      className={styles.icon}
+                    />
+                  ) : (
+                    <FullscreenOutlined
+                      onClick={() => {
+                        setFullScreen(true);
+                      }}
+                      className={styles.icon}
+                    />
+                  )}
+                </div>
+              </div>
+            </FullScreen>
+          </div>
+
           <div className={styles.info}></div>
         </div>
       </Card>

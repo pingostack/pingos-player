@@ -2,12 +2,15 @@ import React, { useEffect, useRef, useState } from "react";
 import { Button, Input, Card, Modal } from "antd";
 import styles from "./index.less";
 import Hls from "hls.js";
+import { FullscreenOutlined, FullscreenExitOutlined } from "@ant-design/icons";
+import FullScreen from "react-full-screen";
 
 export default () => {
   const videoRef = useRef();
   const playerRef = useRef();
   const [playing, setPlaying] = useState(false);
   const [url, setUrl] = useState("https://live.pingos.io:4443/hls/ice.m3u8");
+  const [fullScreen, setFullScreen] = useState(false);
 
   useEffect(() => {
     if (!Hls.isSupported()) {
@@ -44,7 +47,7 @@ export default () => {
   return (
     <div className={styles.container}>
       <Card title="HLS流直播">
-        <div className={styles.box}>
+        <div className={styles["input-box"]}>
           <Input
             onChange={e => {
               setUrl(e.target.value);
@@ -64,8 +67,37 @@ export default () => {
           )}
         </div>
 
-        <div className={styles["video-box"]}>
-          <video ref={videoRef} className={styles.video}></video>
+        <div className={styles["player-box"]}>
+          <div className={styles.box}>
+            <FullScreen
+              enabled={fullScreen}
+              onChange={e => {
+                setFullScreen(e);
+              }}
+            >
+              <div className={styles.player}>
+                <video ref={videoRef} className={styles.video}></video>
+                <div className={styles.control}>
+                  {fullScreen ? (
+                    <FullscreenExitOutlined
+                      onClick={() => {
+                        setFullScreen(false);
+                      }}
+                      className={styles.icon}
+                    />
+                  ) : (
+                    <FullscreenOutlined
+                      onClick={() => {
+                        setFullScreen(true);
+                      }}
+                      className={styles.icon}
+                    />
+                  )}
+                </div>
+              </div>
+            </FullScreen>
+          </div>
+
           <div className={styles.info}></div>
         </div>
       </Card>

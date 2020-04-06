@@ -1,6 +1,6 @@
 .container {
   padding-top: 20px;
-  .box {
+  .input-box {
     display: flex;
     margin-bottom: 20px;
     .input {
@@ -8,19 +8,48 @@
     }
   }
 
-  .video-box{
+  .player-box {
     display: flex;
-    .video {
+    .box {
       width: 800px;
       height: 450px;
-      background-color: #000;
-      margin-right: 20px;
+      :global {
+        .fullscreen {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .player {
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        position: relative;
+        .control {
+          position: absolute;
+          width: 100%;
+          height: 40px;
+          bottom: 0;
+          background-color: rgba(204, 204, 204, 0.336);
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          padding: 0 10px;
+          .icon {
+            color: #fff;
+            font-size: 26px;
+          }
+        }
+        .video {
+          width: 100%;
+          height: 100%;
+        }
+      }
     }
-    .info{
+
+    .info {
+      margin-left: 20px;
       border: 1px solid #ccc;
       flex: 1;
     }
   }
-
-
 }
