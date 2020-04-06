@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Button, Input, Card } from "antd";
+import { Button, Input, Card, Modal } from "antd";
 import styles from "./index.less";
 
 import WXInlinePlayer from "./components/p";
@@ -18,10 +18,18 @@ export default () => {
         asmUrl: `${window.routerBase}WXInlinePlayer/prod.baseline.asm.combine.js`,
         wasmUrl: `${window.routerBase}WXInlinePlayer/prod.baseline.wasm.combine.js`
       });
+    } else {
+      Modal.error({
+        title: "错误提醒",
+        content: "当前浏览器不支持，请换另一种播放器"
+      });
     }
 
     return () => {
-      console.log("componentWillUnmount: 组件卸载， 做一些清理工作");
+      // 清理
+      if (playerRef.current) {
+        playerRef.current.destroy();
+      }
     };
   }, []);
 
@@ -77,8 +85,7 @@ export default () => {
 
   const stop = () => {
     setPlaying(false);
-    // playerRef.current.destroy();
-    // playerRef.current = null;
+    playerRef.current.stop();
   };
 
   return (

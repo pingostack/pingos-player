@@ -1,27 +1,34 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Button, Input, Card } from "antd";
+import { Button, Input, Card, Modal } from "antd";
 import styles from "./index.less";
 import Hls from "hls.js";
 
 export default () => {
   const videoRef = useRef();
-  const hlsRef = useRef();
+  const playerRef = useRef();
   const [playing, setPlaying] = useState(false);
   const [url, setUrl] = useState("https://live.pingos.io:4443/hls/ice.m3u8");
 
   useEffect(() => {
     if (!Hls.isSupported()) {
-      // 不支持
+      Modal.error({
+        title: "错误提醒",
+        content: "当前浏览器不支持，请换另一种播放器"
+      });
     }
+
     return () => {
-      console.log("componentWillUnmount: 组件卸载， 做一些清理工作");
+      // 清理
+      if (playerRef.current) {
+        playerRef.current.destroy();
+      }
     };
   }, []);
 
   const play = () => {
     setPlaying(true);
     const hls = new Hls();
-    hlsRef.current = hls;
+    playerRef.current = hls;
     hls.attachMedia(videoRef.current);
     hls.loadSource(url);
     hls.on(Hls.Events.MANIFEST_PARSED, function() {
@@ -31,7 +38,7 @@ export default () => {
 
   const stop = () => {
     setPlaying(false);
-    hlsRef.current.destroy();
+    playerRef.current.destroy();
   };
 
   return (
