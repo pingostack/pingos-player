@@ -8,7 +8,9 @@ export default () => {
   const videoRef = useRef();
   const playerRef = useRef();
   const [playing, setPlaying] = useState(false);
-  const [url, setUrl] = useState("http://live.pingos.io:8088/flv/ice");
+  const [width, setWidth] = useState(1080);
+  const [height, setHeight] = useState(720);
+  const [url, setUrl] = useState("https://live.pingos.io:4443/flv/ice");
 
   useEffect(() => {
     if (WXInlinePlayer.isSupport()) {
@@ -42,6 +44,29 @@ export default () => {
         bufferingTime: 1e3,
         cacheSegmentCount: 64,
         customLoader: null
+      });
+
+      player.on("mediaInfo", mediaInfo => {
+        const { onMetaData } = mediaInfo;
+        let width;
+        let height;
+
+        height = onMetaData.height;
+        width = onMetaData.width;
+        for (let i = 0; i < onMetaData.length; i++) {
+          if ("height" in onMetaData[i]) {
+            height = onMetaData[i].height;
+          } else if ("width" in onMetaData[i]) {
+            width = onMetaData[i].width;
+          }
+        }
+
+        if (width) {
+          setWidth(width);
+        }
+        if (height) {
+          setHeight(height);
+        }
       });
 
       player.play();
@@ -80,7 +105,12 @@ export default () => {
         </div>
 
         <div className={styles["video-box"]}>
-          <canvas ref={videoRef} className={styles.video}></canvas>
+          <canvas
+            width={width}
+            height={height}
+            ref={videoRef}
+            className={styles.video}
+          ></canvas>
           <div className={styles.info}></div>
         </div>
       </Card>
