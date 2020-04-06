@@ -7,7 +7,7 @@ export default () => {
   const videoRef = useRef();
   const hlsRef = useRef();
   const [playing, setPlaying] = useState(false);
-  const [url, setUrl] = useState("https://live.pingos.io:4443/hls2/ice.m3u8");
+  const [url, setUrl] = useState("https://live.pingos.io:4443/hls/ice.m3u8");
 
   useEffect(() => {
     if (!Hls.isSupported()) {
