@@ -8,15 +8,13 @@ export default () => {
   const videoRef = useRef();
   const playerRef = useRef();
   const [playing, setPlaying] = useState(false);
-  const [url, setUrl] = useState(
-    "http://cyberplayer.bcelive.com/videoworks/mda-kbuhu4wqdi08dwix/cyberplayer/flv/cyberplayer-demo.flv"
-  );
+  const [url, setUrl] = useState("http://live.pingos.io:8088/flv/ice");
 
   useEffect(() => {
     if (WXInlinePlayer.isSupport()) {
       WXInlinePlayer.init({
         asmUrl: `${window.routerBase}WXInlinePlayer/prod.baseline.asm.combine.js`,
-        wasmUrl: `${window.routerBase}WXInlinePlayer/prod.baseline.wasm.combine.js`,
+        wasmUrl: `${window.routerBase}WXInlinePlayer/prod.baseline.wasm.combine.js`
       });
     }
 
@@ -38,12 +36,12 @@ export default () => {
         muted: false,
         autoplay: true,
         loop: true,
-        isLive: false,
+        isLive: true,
         chunkSize: 128 * 1024,
         preloadTime: 5e2,
         bufferingTime: 1e3,
         cacheSegmentCount: 64,
-        customLoader: null,
+        customLoader: null
       });
 
       player.play();
@@ -63,7 +61,7 @@ export default () => {
       <Card title="FLV流直播">
         <div className={styles.box}>
           <Input
-            onChange={(e) => {
+            onChange={e => {
               setUrl(e.target.value);
             }}
             value={url}

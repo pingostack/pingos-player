@@ -7,9 +7,7 @@ export default () => {
   const videoRef = useRef();
   const hlsRef = useRef();
   const [playing, setPlaying] = useState(false);
-  const [url, setUrl] = useState(
-    "https://meet-frame.inside.xiaoeknow.com/app5ace18276a3e6_9kJzSUh6/video/1/l_5ae13437e845a_eoKpS8BMdV.m3u8"
-  );
+  const [url, setUrl] = useState("http://live.pingos.io:8088/hls2/ice.m3u8");
 
   useEffect(() => {
     if (!Hls.isSupported()) {
