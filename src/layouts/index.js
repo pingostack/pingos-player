@@ -40,6 +40,13 @@ export default ({ children }) => {
               >
                 RTMP流直播
               </NavLink>
+              <NavLink
+                to="/ts"
+                className={styles["nav-link"]}
+                activeClassName={styles.active}
+              >
+                TS流直播
+              </NavLink>
             </nav>
           </div>
         </div>
